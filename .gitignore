@@ -15,5 +15,6 @@ captures
 .idea/modules.xml
 .idea/compiler.xml
 /.idea/jarRepositories.xml
+.idea/uiDesigner.xml
 gradle.xml
 *.iml
