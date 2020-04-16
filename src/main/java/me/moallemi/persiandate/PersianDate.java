@@ -10,7 +10,7 @@ import static me.moallemi.persiandate.PersianDateUtils.*;
 /**
  * This is an implementation of Solar Hijri calendar (also known as Jalali calendar, Persian calendar).
  */
-public class PersianDate {
+public class PersianDate implements Comparable<PersianDate> {
     /**
      * The minimum supported persian date {@code 0001-01-01}.
      */
@@ -329,13 +329,24 @@ public class PersianDate {
     }
 
     /**
-     * Returns an equivalent LocalDate and time as an instance of {@link Date}.
+     * Returns an equivalent Date and time as an instance of {@link Date}.
      * Calling this method has no effect on the object that calls this.
      *
      * @return the equivalent Gregorian date as an instance of {@link Date}
      */
     public LocalDate toLocalDate() {
         return LocalDate.ofEpochDay(toEpochDay());
+    }
+
+    public long getMillisOf() {
+        return new Date(toEpochDay() * 1000L).getTime();
+    }
+
+    @Override
+    public int compareTo(PersianDate o) {
+        long thisTime = getMillisOf();
+        long anotherTime = o.getMillisOf();
+        return (Long.compare(thisTime, anotherTime));
     }
 
     @Override
