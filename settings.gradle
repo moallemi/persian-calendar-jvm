@@ -1,2 +1,1 @@
-include ':persian-date', ':persian-date-ktx'
-
+include ':persian-date', ':persian-date-ktx', ':persian-date-picker'

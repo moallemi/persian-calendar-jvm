@@ -1,0 +1,11 @@
+project.description = "Persian Date Picker for Android"
+
+project.ext {
+    artifactId = 'persian-date-picker'
+    name = 'Persian Date Picker for Android'
+    url = "https://github.com/moallemi/persian-date"
+    scm = [
+            connectionUrl         : "scm:git@github.com:moallemi/persian-date.git",
+            developerConnectionUrl: "scm:git@github.com:moallemi/persian-date.git"
+    ]
+}
