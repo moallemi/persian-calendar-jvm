@@ -85,7 +85,7 @@ public class PersianDate implements Comparable<PersianDate> {
      */
     public static PersianDate now() {
         Calendar calendar = Calendar.getInstance();
-        return ofJulianDays((long) dateToJulian(calendar));
+        return ofJulianDays((long) PersianDateUtils.dateToJulian(calendar));
     }
 
     /**
@@ -127,7 +127,7 @@ public class PersianDate implements Comparable<PersianDate> {
      * @throws PersianDateException if the passed parameters do not form a valid date or time.
      */
     private PersianDate(int year, int month, int dayOfMonth) {
-        checkRange(year, month, dayOfMonth);
+        PersianDateUtils.checkRange(year, month, dayOfMonth);
         boolean leapYear = isLeapYear(year);
         int maxDaysOfMonth = PersianMonth.of(month).length(leapYear);
         if (dayOfMonth > maxDaysOfMonth) {
@@ -144,13 +144,13 @@ public class PersianDate implements Comparable<PersianDate> {
     public static PersianDate ofDate(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        return ofJulianDays((long) dateToJulian(calendar));
+        return ofJulianDays((long) PersianDateUtils.dateToJulian(calendar));
     }
 
     public static PersianDate fromTimeInMillis(long millis) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(millis);
-        return ofJulianDays((long) dateToJulian(calendar));
+        return ofJulianDays((long) PersianDateUtils.dateToJulian(calendar));
     }
 
     public static PersianDate ofLocalDate(LocalDate localDate) {
@@ -170,7 +170,7 @@ public class PersianDate implements Comparable<PersianDate> {
     }
 
     public static PersianDate ofJulianDays(long julianDays) {
-        longRequirePositive(julianDays, "julianDays");
+        PersianDateUtils.longRequirePositive(julianDays, "julianDays");
         long depoch = julianDays - 2121445L;
         long cycle = depoch / 1029983L;
         long cyear = depoch % 1029983L;
@@ -184,7 +184,7 @@ public class PersianDate implements Comparable<PersianDate> {
             ycycle = (ycycle >= 0) ? ycycle + 1L : ycycle;
         }
         // Check year '474'
-        ycycle = !isBetween(julianDays, 2121079, 2121444) ? ycycle : 0;
+        ycycle = !PersianDateUtils.isBetween(julianDays, 2121079, 2121444) ? ycycle : 0;
         long pYear = ycycle + (2820L * cycle) + 474L;
         int yday = (int) (julianDays - PersianDate.of((int) pYear, 1, 1).toJulianDay() + 1);
         int pMonth = (int) Math.ceil((yday <= 186) ? yday / 31.0 : (yday - 6) / 30.0);
@@ -259,7 +259,7 @@ public class PersianDate implements Comparable<PersianDate> {
      */
     public PersianDate plusYears(long yearsToAdd) {
         PersianDate newPersianDate = plusMonths(yearsToAdd * 12);
-        checkRange(newPersianDate.year, newPersianDate.month, newPersianDate.day);
+        PersianDateUtils.checkRange(newPersianDate.year, newPersianDate.month, newPersianDate.day);
         return newPersianDate;
     }
 
@@ -320,7 +320,7 @@ public class PersianDate implements Comparable<PersianDate> {
     }
 
     public static boolean isLeapYear(int year) {
-        return ceil((38D + (ceil(year - 474L, 2820L) + 474L)) * 682D, 2816D) < 682L;
+        return PersianDateUtils.ceil((38D + (PersianDateUtils.ceil(year - 474L, 2820L) + 474L)) * 682D, 2816D) < 682L;
     }
 
     int lengthOfMonth() {

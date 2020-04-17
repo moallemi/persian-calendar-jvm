@@ -1,0 +1,21 @@
+project.description = "Persian Date and Persian Calendar for Java, Kotlin and Android"
+
+project.ext {
+    artifactId = 'persian-date-ktx'
+    name = 'Persian Date Kotlin and Android'
+    url = "https://github.com/moallemi/persian-date"
+    scm = [
+            connectionUrl         : "scm:git@github.com:moallemi/persian-date.git",
+            developerConnectionUrl: "scm:git@github.com:moallemi/persian-date.git"
+    ]
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    archiveClassifier.set("sources")
+}
+
+task javadocJar(type: Jar) {
+    from tasks.javadoc
+    archiveClassifier.set("javadoc")
+}
