@@ -1,0 +1,9 @@
+
+group 'me.moallemi'
+version '0.0.2'
+
+signing {
+    required !version.endsWith('SNAPSHOT')
+    useInMemoryPgpKeys(System.getenv('SIGNING_KEY'), System.getenv('SIGNING_PASSWORD'))
+    sign(publishing.publications)
+}

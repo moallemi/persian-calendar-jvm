@@ -1,4 +1,5 @@
 project.description = "Persian Date Picker for Android"
+project.version = rootProject.version
 
 project.ext {
     artifactId = 'persian-date-picker'
@@ -9,3 +10,5 @@ project.ext {
             developerConnectionUrl: "scm:git@github.com:moallemi/persian-date.git"
     ]
 }
+
+apply from: '../gradle/publish-library.gradle'

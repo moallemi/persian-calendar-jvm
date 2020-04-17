@@ -1,1 +1,3 @@
+rootProject.name = "persian-date-jvm"
+
 include ':persian-date', ':persian-date-ktx', ':persian-date-picker'
