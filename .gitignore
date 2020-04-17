@@ -18,3 +18,5 @@ captures
 .idea/uiDesigner.xml
 gradle.xml
 *.iml
+
+.DS_Store
