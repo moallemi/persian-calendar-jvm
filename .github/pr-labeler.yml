@@ -1,0 +1,5 @@
+feature: ['feature/*', 'feat/*']
+fix: ['fix/*', 'bugfix/*', 'hotfix/*']
+maintenance: ['chore/*']
+release: ['release/*']
+infrastructure: ['infra/*']
