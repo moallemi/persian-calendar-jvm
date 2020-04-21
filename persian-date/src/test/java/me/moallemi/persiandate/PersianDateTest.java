@@ -410,8 +410,8 @@ public class PersianDateTest {
     @Test
     public void testOnToString() {
         PersianDate PersianDate1 = PersianDate.of(1391, 11, 6);
-        assertEquals("1391-11-06", PersianDate1.toString());
+        assertEquals("1391/11/06", PersianDate1.toString());
         PersianDate PersianDate2 = PersianDate.of(31, 1, 12);
-        assertEquals("0031-01-12", PersianDate2.toString());
+        assertEquals("0031/01/12", PersianDate2.toString());
     }
 }

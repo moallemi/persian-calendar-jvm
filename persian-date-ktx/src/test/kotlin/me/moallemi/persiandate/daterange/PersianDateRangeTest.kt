@@ -9,11 +9,11 @@ class PersianDateRangeTest {
     @Test
     fun testRange() {
         val expected = listOf(
-            "1398-12-28",
-            "1398-12-29",
-            "1399-01-01",
-            "1399-01-02",
-            "1399-01-03"
+            "1398/12/28",
+            "1398/12/29",
+            "1399/01/01",
+            "1399/01/02",
+            "1399/01/03"
         )
         val startDate = PersianDate.of(1398, 12, 28)
         val endDate = PersianDate.of(1399, 1, 3)
@@ -26,11 +26,11 @@ class PersianDateRangeTest {
     @Test
     fun testLeapYearRange() {
         val expected = listOf(
-            "1399-12-28",
-            "1399-12-29",
-            "1399-12-30",
-            "1400-01-01",
-            "1400-01-02"
+            "1399/12/28",
+            "1399/12/29",
+            "1399/12/30",
+            "1400/01/01",
+            "1400/01/02"
         )
         val startDate = PersianDate.of(1399, 12, 28)
         val endDate = PersianDate.of(1400, 1, 2)
@@ -43,9 +43,9 @@ class PersianDateRangeTest {
     @Test
     fun testStep() {
         val expected = listOf(
-            "1399-01-01",
-            "1399-01-03",
-            "1399-01-05"
+            "1399/01/01",
+            "1399/01/03",
+            "1399/01/05"
         )
         val startDate = PersianDate.of(1399, 1, 1)
         val endDate = PersianDate.of(1399, 1, 5)
@@ -58,9 +58,9 @@ class PersianDateRangeTest {
     @Test
     fun testLeapYearStep() {
         val expected = listOf(
-            "1399-12-28",
-            "1399-12-30",
-            "1400-01-02"
+            "1399/12/28",
+            "1399/12/30",
+            "1400/01/02"
         )
         val startDate = PersianDate.of(1399, 12, 28)
         val endDate = PersianDate.of(1400, 1, 2)
