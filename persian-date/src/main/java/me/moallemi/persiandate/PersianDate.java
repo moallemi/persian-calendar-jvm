@@ -5,8 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-import static me.moallemi.persiandate.PersianDateUtils.*;
-
 /**
  * This is an implementation of Solar Hijri calendar (also known as Jalali calendar, Persian calendar).
  */
@@ -315,6 +313,10 @@ public class PersianDate implements Comparable<PersianDate> {
         return toJulianDay() - JULIAN_DAY_TO_1970;
     }
 
+    public Date toDate() {
+        return new Date(toEpochDay() * 1000L);
+    }
+
     public boolean isLeapYear() {
         return isLeapYear(year);
     }
@@ -339,7 +341,7 @@ public class PersianDate implements Comparable<PersianDate> {
     }
 
     public long getMillisOf() {
-        return new Date(toEpochDay() * 1000L).getTime();
+        return toDate().getTime();
     }
 
     @Override
@@ -366,8 +368,8 @@ public class PersianDate implements Comparable<PersianDate> {
 
     /**
      * Returns the string representation of this persian date. The string contains of ten
-     * characters whose format is "XXXX-YY-ZZ", where XXXX is the year, YY is the
-     * month-of-year and ZZ is day-of-month. (Each of the capital characters represents a
+     * characters whose format is "YYYY/MM/dd", where YYYY is the year, MM is the
+     * month-of-year and dd is day-of-month. (Each of the capital characters represents a
      * single decimal digit.)
      * <p>
      * If any of the three parts of this persian date is too small to fill up its field,
@@ -376,6 +378,6 @@ public class PersianDate implements Comparable<PersianDate> {
      * @return a suitable representation of this persian date
      */
     public String toString() {
-        return String.format("%04d-%02d-%02d", year, month, day);
+        return String.format("%04d/%02d/%02d", year, month, day);
     }
 }
