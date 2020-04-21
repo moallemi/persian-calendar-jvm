@@ -30,13 +30,12 @@ public class SimplePersianDateFormat {
         this.locale = locale;
     }
 
-    /* TODO implement format and date Format
+    // TODO implement format and date Format
     public String format(PersianDate date) {
         return date.toString();
     }
 
-    public PersianDate parse(String source) {
-        return null;
+    public PersianDate parse(String source) throws PersianDateException {
+        throw new PersianDateException("Not Implemented");
     }
-     */
 }
