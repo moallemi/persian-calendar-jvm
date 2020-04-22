@@ -2,7 +2,9 @@ package me.moallemi.persiandate;
 
 import org.junit.Test;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
@@ -358,9 +360,42 @@ public class SimplePersianDateFormatTest {
 
     @Test
     public void testFormat49() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MMM/ddd");
         SimplePersianDateFormat simplePersianDateFormat = new SimplePersianDateFormat("yyyy/MMM/ddd");
         PersianDate persianDate = PersianDate.of(1399, 12, 23);
         assertEquals("1399/ESFAND/023", simplePersianDateFormat.format(persianDate));
+    }
+
+    @Test
+    public void testParse1() throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy MM dd yy");
+        Date date = simpleDateFormat.parse("2014 04 23 15");
+        System.out.println(date);
+
+        SimplePersianDateFormat simplePersianDateFormat = new SimplePersianDateFormat();
+        assertEquals(PersianDate.of(1398, 6, 21), simplePersianDateFormat.parse("1398/06/21"));
+    }
+
+    @Test(expected = PersianDateException.class)
+    public void testParse2() {
+        SimplePersianDateFormat simplePersianDateFormat = new SimplePersianDateFormat();
+        assertEquals(PersianDate.of(1398, 6, 1), simplePersianDateFormat.parse("1398/6/1"));
+    }
+
+    @Test
+    public void testParse3() {
+        SimplePersianDateFormat simplePersianDateFormat = new SimplePersianDateFormat("yyyy/M/d");
+        assertEquals(PersianDate.of(1398, 6, 1), simplePersianDateFormat.parse("1398/6/1"));
+    }
+
+    @Test
+    public void testParse4() {
+        SimplePersianDateFormat simplePersianDateFormat = new SimplePersianDateFormat("yy/M/d");
+        assertEquals(PersianDate.of(1398, 6, 1), simplePersianDateFormat.parse("98/6/1"));
+    }
+
+    @Test
+    public void testParse5() {
+        SimplePersianDateFormat simplePersianDateFormat = new SimplePersianDateFormat("yy M d MM yyyy dd");
+        assertEquals(PersianDate.of(1324, 5, 23), simplePersianDateFormat.parse("98 6 1 05 1324 23"));
     }
 }
