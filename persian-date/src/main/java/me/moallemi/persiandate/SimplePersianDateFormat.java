@@ -31,6 +31,8 @@ public class SimplePersianDateFormat {
      * M  Month in year. Number of M's determine length of format (e.g. M, MM)
      * d  Day in month. Number of d's determine length of format (e.g. d or dd)
      * -, /, [space] as delimiter
+     * @param date instance of PersianDate
+     * @return Formatted string from PersianDate
      */
     public String format(PersianDate date) throws PersianDateException {
         char[] chars = pattern.toCharArray();
@@ -91,6 +93,8 @@ public class SimplePersianDateFormat {
      * Month in year. Number of M's determine length of format (e.g. 3, 03)
      * Day in month. Number of d's determine length of format (e.g. 4 or 04)
      * -, /, [space] as delimiter
+     * @param source string to parse
+     * @return PersianDate
      */
     public PersianDate parse(String source) throws PersianDateException {
         int year = 0, month = 0, dayOfMonth = 0;

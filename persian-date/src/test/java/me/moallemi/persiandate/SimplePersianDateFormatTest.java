@@ -367,10 +367,6 @@ public class SimplePersianDateFormatTest {
 
     @Test
     public void testParse1() throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy MM dd yy");
-        Date date = simpleDateFormat.parse("2014 04 23 15");
-        System.out.println(date);
-
         SimplePersianDateFormat simplePersianDateFormat = new SimplePersianDateFormat();
         assertEquals(PersianDate.of(1398, 6, 21), simplePersianDateFormat.parse("1398/06/21"));
     }
