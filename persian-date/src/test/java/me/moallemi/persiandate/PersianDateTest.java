@@ -3,6 +3,7 @@ package me.moallemi.persiandate;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -369,6 +370,115 @@ public class PersianDateTest {
         assertEquals(expected, PersianDate.ofLocalDate(ldt));
     }
 
+    // region ofDate
+
+    @Test
+    public void testOfDateOnToGregorian() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2017, 8, 11);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1396, 6, 20));
+    }
+
+    @Test
+    public void testOfDateOnToGregorianMinPersianDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(622, 2, 22);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.MIN);
+    }
+
+    @Test
+    public void testOfDateOnToGregorianMaxPersianDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2621, 2, 20);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.MAX);
+    }
+
+    @Test
+    public void testOfDateOnToGregorianInPersianLeapYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2021, 2, 20);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1399, 12, 30));
+    }
+
+    @Test
+    public void testOfDateOnToGregorianInGregorianLeapYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2016, 1, 29);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1394, 12, 10));
+    }
+
+    @Test
+    public void testOfDateOnToGregorianOnFirstOfPersianYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2028, 2, 20);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1407, 1, 1));
+    }
+
+    @Test
+    public void testOfDateOnToGregorianOnEndOfPersianYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(1998, 2, 20);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1376, 12, 29));
+    }
+
+    @Test
+    public void testOfDateOnToGregorianOnFirstOfGregorianYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2007, 0, 1);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1385, 10, 11));
+    }
+
+    @Test
+    public void testOfDateOnToGregorianOnEndOfGregorianYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2050, 11, 31);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1429, 10, 10));
+    }
+
+    @Test
+    public void testOfDateOnToPersian() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2046, 4, 10);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1425, 2, 20));
+    }
+
+    @Test
+    public void testOfDateOnToPersianInGregorianLeapYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2012, 1, 29);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1390, 12, 10));
+    }
+
+    @Test
+    public void testOfDateOnToPersianInPersianLeapYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2034, 2, 20);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1412, 12, 30));
+    }
+
+    @Test
+    public void testOfDateOnToPersianOnFirstOfGregorianYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2008, 0, 1);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1386, 10, 11));
+    }
+
+    @Test
+    public void testOfDateOnToPersianOnEndOfGregorianYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2003, 2, 1);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1381, 12, 10));
+    }
+
+    @Test
+    public void testOfDateOnToPersianOnFirstOfPersianYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(1986, 2, 21);
+        assertEquals(PersianDate.ofDate(calendar.getTime()), PersianDate.of(1365, 1, 1));
+    }
+
+    //endregion ofDate
+
     @Test
     public void testOnEqualsNull() {
         PersianDate a = PersianDate.of(1396, 3, 15);
@@ -413,5 +523,15 @@ public class PersianDateTest {
         assertEquals("1391/11/06", PersianDate1.toString());
         PersianDate PersianDate2 = PersianDate.of(31, 1, 12);
         assertEquals("0031/01/12", PersianDate2.toString());
+    }
+
+    @Test
+    public void testToDate() {
+        assertEquals(PersianDate.now().toDate(), new Date());
+    }
+
+    @Test
+    public void testToLocalDate() {
+        assertEquals(PersianDate.of(1399, 2, 3).toLocalDate(), LocalDate.of(2020, 4, 22));
     }
 }

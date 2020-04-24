@@ -314,7 +314,14 @@ public class PersianDate implements Comparable<PersianDate> {
     }
 
     public Date toDate() {
-        return new Date(toEpochDay() * 1000L);
+        Calendar currentCalendar = Calendar.getInstance();
+        Calendar convertedCalendar = Calendar.getInstance();
+        convertedCalendar.setTime(new Date(toEpochDay() * 86400000L));
+        convertedCalendar.set(Calendar.HOUR_OF_DAY, currentCalendar.get(Calendar.HOUR_OF_DAY));
+        convertedCalendar.set(Calendar.MINUTE, currentCalendar.get(Calendar.MINUTE));
+        convertedCalendar.set(Calendar.SECOND, currentCalendar.get(Calendar.SECOND));
+        convertedCalendar.set(Calendar.MILLISECOND, currentCalendar.get(Calendar.MILLISECOND));
+        return convertedCalendar.getTime();
     }
 
     public boolean isLeapYear() {

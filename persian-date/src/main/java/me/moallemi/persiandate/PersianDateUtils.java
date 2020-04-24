@@ -103,20 +103,20 @@ class PersianDateUtils {
                 + (month < 7 ? 31 * month : 30 * month + 6) + day;
     }
 
-    public static double dateToJulian(Calendar date) {
-        int year = date.get(Calendar.YEAR);
-        int month = date.get(Calendar.MONTH) + 1;
-        int day = date.get(Calendar.DAY_OF_MONTH);
-        int hour = date.get(Calendar.HOUR_OF_DAY);
-        int minute = date.get(Calendar.MINUTE);
-        int second = date.get(Calendar.SECOND);
-
-        double extra = (100.0 * year) + month - 190002.5;
-        return (367.0 * year) -
-                (Math.floor(7.0 * (year + Math.floor((month + 9.0) / 12.0)) / 4.0)) +
-                Math.floor((275.0 * month) / 9.0) +
-                day + ((hour + ((minute + (second / 60.0)) / 60.0)) / 24.0) +
-                1721013.5 - ((0.5 * extra) / Math.abs(extra)) + 0.5;
+    /**
+     * from https://en.wikipedia.org/wiki/Julian_day
+     *
+     * @param calendar
+     * @return
+     */
+    public static int dateToJulian(Calendar calendar) {
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH) - 1;
+        return (1461 * (year + 4800 + (month - 14) / 12)) / 4 +
+                (367 * (month - 2 - 12 * ((month - 14) / 12))) / 12 -
+                (3 * ((year + 4900 + (month - 14) / 12) / 100)) / 4 +
+                day - 32075;
     }
 
     public static void checkRange(int year, int month, int dayOfMonth) {
